@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found | PrimeSpace</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container navbar">
+      <a class="brand" href="index.html"><img class="brand-logo" src="assets/img/logo-mark.png" alt="PrimeSpace logo"><span class="brand-text">Prime<span>Space</span></span></a>
+      <nav class="nav-links">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="venues.html">Venues</a>
+        <a class="nav-link" href="providers.html">Providers</a>
+      </nav>
+      <div class="nav-actions">
+        <svg class="user-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg>
+        <a href="login.html"><strong>Login</strong></a>
+        <a class="btn btn-primary btn-sm" href="customer-register.html">Register</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container section" style="text-align:center; padding:100px 20px;">
+    <div style="font-size:6rem; margin-bottom:16px;">🏢</div>
+    <h1 style="font-size:5rem; margin:0; letter-spacing:-.03em;">404</h1>
+    <h2 style="margin:12px 0 16px;">Page not found</h2>
+    <p class="muted" style="font-size:1.1rem; max-width:400px; margin:0 auto 32px;">Looks like this venue doesn't exist. Let's get you back on track.</p>
+    <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-bottom:48px;">
+      <a class="btn btn-primary" href="index.html">Go Home</a>
+      <a class="btn btn-secondary" href="venues.html">Browse Venues</a>
+    </div>
+    <div style="max-width:480px; margin:0 auto; background:#0d1b2e; border:1px solid rgba(125,211,252,.1); border-radius:16px; padding:32px; text-align:left;">
+      <h3 style="margin:0 0 8px; color:#f1f5f9;">Report a broken link</h3>
+      <p class="muted" style="margin:0 0 20px; font-size:0.9rem;">Let us know what you were looking for and we'll fix it.</p>
+      <div id="contact-success" style="display:none; background:#052e16; color:#86efac; padding:12px 16px; border-radius:10px; margin-bottom:16px; font-weight:600;">✓ Message sent — thanks for letting us know!</div>
+      <div style="margin-bottom:14px;">
+        <label style="color:#93c5fd; font-size:0.85rem; font-weight:600; display:block; margin-bottom:6px;">Your email</label>
+        <input id="contact-email" type="email" placeholder="you@company.com" style="width:100%; background:#0f1f38; border:1px solid rgba(125,211,252,.15); border-radius:8px; padding:10px 14px; color:#e2e8f0; font-size:0.95rem; box-sizing:border-box;">
+      </div>
+      <div style="margin-bottom:20px;">
+        <label style="color:#93c5fd; font-size:0.85rem; font-weight:600; display:block; margin-bottom:6px;">What were you looking for?</label>
+        <textarea id="contact-message" placeholder="Describe what page or link you were trying to reach..." rows="3" style="width:100%; background:#0f1f38; border:1px solid rgba(125,211,252,.15); border-radius:8px; padding:10px 14px; color:#e2e8f0; font-size:0.95rem; resize:vertical; box-sizing:border-box;"></textarea>
+      </div>
+      <button onclick="
+        const email = document.getElementById('contact-email').value.trim();
+        const msg = document.getElementById('contact-message').value.trim();
+        if (!email || !msg) { alert('Please fill in both fields.'); return; }
+        document.getElementById('contact-success').style.display = 'block';
+        document.getElementById('contact-email').value = '';
+        document.getElementById('contact-message').value = '';
+      " class="btn btn-primary" style="width:100%;">Send Report</button>
+    </div>
+  </main>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Details | PrimeSpace</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    .payment-card { background: #0d1b2e !important; color: #e2e8f0 !important; border: 1px solid rgba(125,211,252,.10) !important; }
+    .payment-card h1 { color: #f1f5f9 !important; }
+    .payment-card .muted { color: #7eb3e8 !important; }
+    .payment-card p { color: #c8d8f0 !important; }
+    .soft-panel { background: #0f1f38 !important; border: 1px solid rgba(125,211,252,.1) !important; }
+    .soft-panel strong { color: #f1f5f9 !important; }
+    .summary-item { color: #e2e8f0 !important; border-bottom-color: rgba(125,211,252,.08) !important; }
+    .summary-item strong { color: #f1f5f9 !important; }
+    .form-group label { color: #93c5fd !important; font-weight: 600; }
+    .input-wrap { background: #0f1f38 !important; border-color: rgba(125,211,252,.15) !important; }
+    .input-wrap input { color: #e2e8f0 !important; }
+    .input-wrap input::placeholder { color: #4a6080 !important; }
+    .input-wrap span { color: #7eb3e8 !important; }
+    .pay-badge { background: #0f1f38 !important; color: #93c5fd !important; border: 1px solid rgba(125,211,252,.15) !important; }
+    .summary-panel { background: #0d1b2e !important; border: 1px solid rgba(125,211,252,.10) !important; color: #e2e8f0 !important; }
+    .summary-panel h3 { color: #f1f5f9 !important; }
+    .summary-panel ul li { color: #c8d8f0 !important; }
+    .price-panel .price { color: #f1f5f9 !important; }
+    .card-row .form-group { background: transparent !important; }
+    .breadcrumb { color: #93c5fd !important; }
+    .divider { border-color: rgba(125,211,252,.1) !important; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container navbar">
+      <a class="brand" href="index.html"><img class="brand-logo" src="assets/img/logo-mark.png" alt="PrimeSpace logo"><span class="brand-text">Prime<span>Space</span></span></a>
+      <nav class="nav-links">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link active" href="venues.html">Venues</a>
+        <a class="nav-link" href="providers.html">Providers</a>
+      </nav>
+      <div class="nav-actions">
+        <svg class="user-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg>
+        <a href="login.html"><strong>Login</strong></a>
+        <a class="btn btn-primary btn-sm" href="customer-register.html">Register</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container section" data-payment-page>
+    <a class="breadcrumb" href="venue.html">← Back to venue details</a>
+    <section class="payment-shell">
+      <div class="payment-card">
+        <h1 style="margin-top:0; font-size:clamp(2rem, 3vw, 3rem); letter-spacing:-.03em;">Enter Payment Details</h1>
+        <p class="muted" style="font-size:1.05rem; margin-bottom:24px;">Complete your booking securely for <strong data-payment-venue style="color:#93c5fd;">Venue</strong>. Your card information is used to confirm this reservation.</p>
+
+        <div class="soft-panel" style="margin-bottom:24px;">
+          <strong>Booking summary</strong>
+          <div class="summary-list" style="margin-top:14px;">
+            <div class="summary-item"><span>Venue</span><strong data-payment-venue-inline>Executive Conference Center</strong></div>
+            <div class="summary-item"><span>Event date</span><strong data-payment-date>Not selected</strong></div>
+            <div class="summary-item"><span>Guests</span><strong data-payment-guests>50</strong></div>
+          </div>
+        </div>
+
+        <form class="form-grid" data-payment-form>
+          <div class="form-group">
+            <label for="cardholder-name">Cardholder Name</label>
+            <div class="input-wrap"><span class="input-icon">👤</span><input id="cardholder-name" type="text" placeholder="Name on card" required></div>
+          </div>
+
+          <div class="form-group">
+            <label for="billing-email">Billing Email</label>
+            <div class="input-wrap"><span class="input-icon">✉️</span><input id="billing-email" type="email" placeholder="billing@company.com" required></div>
+          </div>
+
+          <div class="form-group">
+            <label for="card-number">Card Number</label>
+            <div class="input-wrap"><span class="input-icon">💳</span><input id="card-number" type="text" inputmode="numeric" maxlength="19" placeholder="1234 5678 9012 3456" required></div>
+          </div>
+
+          <div class="card-row">
+            <div class="form-group">
+              <label for="expiry-date">Expiry Date</label>
+              <div class="input-wrap"><span class="input-icon">📅</span><input id="expiry-date" type="text" maxlength="5" placeholder="MM/YY" required></div>
+            </div>
+            <div class="form-group">
+              <label for="security-code">CVV</label>
+              <div class="input-wrap"><span class="input-icon">🔒</span><input id="security-code" type="password" inputmode="numeric" maxlength="4" placeholder="123" required></div>
+            </div>
+            <div class="form-group">
+              <label for="postcode">Postcode</label>
+              <div class="input-wrap"><span class="input-icon">📍</span><input id="postcode" type="text" placeholder="ZIP / Postcode" required></div>
+            </div>
+          </div>
+
+          <div class="payment-grid">
+            <div class="form-group">
+              <label for="company-name">Company Name</label>
+              <div class="input-wrap"><span class="input-icon">🏢</span><input id="company-name" type="text" placeholder="Company or organisation"></div>
+            </div>
+            <div class="form-group">
+              <label for="purchase-order">Purchase Order (optional)</label>
+              <div class="input-wrap"><span class="input-icon">🧾</span><input id="purchase-order" type="text" placeholder="PO number"></div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="billing-address">Billing Address</label>
+            <div class="input-wrap"><span class="input-icon">📌</span><input id="billing-address" type="text" placeholder="Street address" required></div>
+          </div>
+
+          <div class="form-group">
+            <label><input type="checkbox" required> I agree to the PrimeSpace booking terms and authorise this payment.</label>
+          </div>
+
+          <div class="pay-badges">
+            <span class="pay-badge">Visa</span>
+            <span class="pay-badge">Mastercard</span>
+            <span class="pay-badge">American Express</span>
+            <span class="pay-badge">Secure checkout</span>
+          </div>
+
+          <button class="btn btn-primary" type="submit">Confirm Booking</button>
+          <p class="muted" style="text-align:center; margin:0;">Payments are processed securely. You will receive a confirmation email after checkout.</p>
+        </form>
+      </div>
+
+      <aside class="payment-card summary-panel">
+        <div class="price-panel" style="margin-bottom:10px;">
+          <div class="price"><big data-payment-total>$2750</big></div>
+          <p class="muted">Total due today</p>
+        </div>
+        <div class="summary-list">
+          <div class="summary-item"><span>Venue rental</span><strong data-payment-subtotal>$2500</strong></div>
+          <div class="summary-item"><span>Service fee</span><strong data-payment-fee>$250</strong></div>
+          <div class="summary-item"><span>Booking reference</span><strong data-payment-reference>PS-2026-041</strong></div>
+        </div>
+        <div class="divider"></div>
+        <h3 style="margin-top:0;">What happens next?</h3>
+        <ul style="margin:0; padding-left:18px; line-height:1.9; color:#334155;">
+          <li>Your venue request is confirmed instantly.</li>
+          <li>You receive a booking email and payment receipt.</li>
+          <li>The venue provider is notified with your event details.</li>
+        </ul>
+        <div class="divider"></div>
+        <a class="btn btn-secondary" href="venues.html" style="width:100%;">Continue browsing venues</a>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand footer-brand" href="index.html"><img class="brand-logo footer-logo" src="assets/img/logo-mark.png" alt="PrimeSpace logo"><span class="brand-text">Prime<span>Space</span></span></a>
+          <p style="margin-top:16px; max-width:320px;">Your trusted platform for booking premium corporate event venues.</p>
+          <div class="contact-list">
+            <div class="contact-item">✉️ <span>info@primespace.com</span></div>
+            <div class="contact-item">📞 <span>+1 (800) 123-4567</span></div>
+            <div class="contact-item">📍 <span>New York, NY 10001</span></div>
+          </div>
+        </div>
+        <div><h4>Quick Links</h4><div class="footer-list"><a href="index.html">Home</a><a href="venues.html">Search Venues</a><a href="login.html">Customer Login</a><a href="provider-login.html">Provider Login</a></div></div>
+        <div><h4>Resources</h4><div class="footer-list"><a href="#">How It Works</a><a href="#">Pricing</a><a href="#">FAQs</a><a href="#">Support</a></div></div>
+        <div><h4>Legal</h4><div class="footer-list"><a href="#">Terms of Service</a><a href="#">Privacy Policy</a><a href="#">Cookie Policy</a><a href="#">Contact Us</a></div></div>
+      </div>
+      <div class="footer-bottom">© 2026 PrimeSpace. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <a class="helper-bubble" href="#" aria-label="Help">?</a>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

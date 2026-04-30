@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile | PrimeSpace</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    .details-card {
+      background: #0d1b2e !important;
+      color: #e2e8f0 !important;
+      border: 1px solid rgba(125,211,252,.10) !important;
+    }
+    .details-card h2 { color: #f1f5f9 !important; }
+    .details-card .muted { color: #7eb3e8 !important; }
+    .summary-item { color: #e2e8f0 !important; }
+    .summary-item strong { color: #f1f5f9 !important; }
+    .form-group label { color: #93c5fd !important; font-weight: 600; }
+    .input-wrap { background: #0f1f38 !important; border-color: rgba(125,211,252,.15) !important; }
+    .input-wrap input { color: #e2e8f0 !important; }
+    .input-wrap input::placeholder { color: #4a6080 !important; }
+    #edit-success { background: #052e16 !important; color: #86efac !important; border: 1px solid rgba(134,239,172,.2); }
+    #edit-error { background: #1e0a0a !important; color: #fca5a5 !important; border: 1px solid rgba(252,165,165,.2); }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container navbar">
+      <a class="brand" href="index.html"><img class="brand-logo" src="assets/img/logo-mark.png" alt="PrimeSpace logo"><span class="brand-text">Prime<span>Space</span></span></a>
+      <nav class="nav-links">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="venues.html">Venues</a>
+        <a class="nav-link" href="providers.html">Providers</a>
+      </nav>
+      <div class="nav-actions">
+        <svg class="user-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg>
+        <a href="login.html"><strong>Login</strong></a>
+        <a class="btn btn-primary btn-sm" href="customer-register.html">Register</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container section">
+    <div style="max-width:600px; margin:0 auto;">
+      <h1 style="font-size:3rem; margin:0 0 8px; letter-spacing:-.03em;">My Profile</h1>
+      <p class="muted" style="margin-bottom:32px;">Manage your account details.</p>
+
+      <div id="profile-content" style="display:none;">
+
+        <!-- Account info -->
+        <div class="details-card" style="margin-bottom:24px;">
+          <h2 style="margin-top:0;">Account Details</h2>
+          <div class="summary-list">
+            <div class="summary-item"><span>Name</span><strong id="profile-name">—</strong></div>
+            <div class="summary-item"><span>Email</span><strong id="profile-email">—</strong></div>
+            <div class="summary-item"><span>Role</span><strong id="profile-role">—</strong></div>
+            <div class="summary-item"><span>Member since</span><strong id="profile-joined">—</strong></div>
+            <div class="summary-item" id="booking-count-row" style="display:none;"><span>Total Bookings</span><strong id="profile-booking-count">—</strong></div>
+          </div>
+        </div>
+
+        <!-- Provider only section -->
+        <div id="provider-section" style="display:none; margin-bottom:24px;">
+          <div class="details-card" style="margin-bottom:24px;">
+            <h2 style="margin-top:0;">Provider Stats</h2>
+            <div class="summary-list">
+              <div class="summary-item"><span>Active Venues</span><strong id="prov-venues">6</strong></div>
+              <div class="summary-item"><span>Total Bookings</span><strong id="prov-bookings">Loading...</strong></div>
+              <div class="summary-item"><span>Total Revenue</span><strong id="prov-revenue">Loading...</strong></div>
+            </div>
+            <div style="margin-top:16px;">
+              <a class="btn btn-primary" href="provider-dashboard.html">Go to Dashboard</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Edit name -->
+        <div class="details-card" style="margin-bottom:24px;">
+          <h2 style="margin-top:0;">Edit Name</h2>
+          <div id="edit-success" style="display:none; background:#dcfce7; color:#15803d; padding:12px 16px; border-radius:10px; margin-bottom:16px; font-weight:600;">
+            ✓ Name updated successfully
+          </div>
+          <div id="edit-error" style="display:none; background:#fee2e2; color:#991b1b; padding:12px 16px; border-radius:10px; margin-bottom:16px;"></div>
+          <div class="form-group">
+            <label for="new-name">Display Name</label>
+            <div class="input-wrap">
+              <span class="input-icon">👤</span>
+              <input id="new-name" type="text" placeholder="Enter your name">
+            </div>
+          </div>
+          <button class="btn btn-primary" id="save-name-btn" style="margin-top:16px;">Save Changes</button>
+        </div>
+
+        <!-- Danger zone -->
+        <div class="details-card">
+          <h2 style="margin-top:0;">Account</h2>
+          <p class="muted">Signing out will clear your session and you will need to log back in.</p>
+          <button class="btn" style="background:#fee2e2;color:#991b1b;border:none;cursor:pointer;" onclick="window.__psLogout()">Sign Out</button>
+        </div>
+
+      </div>
+
+      <!-- Not logged in -->
+      <div id="not-logged-in" style="display:none; text-align:center; padding:60px 0;">
+        <div style="font-size:3rem; margin-bottom:16px;">🔒</div>
+        <h3>Please sign in to view your profile</h3>
+        <a class="btn btn-primary" href="login.html" style="margin-top:16px;">Sign In</a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand footer-brand" href="index.html"><img class="brand-logo footer-logo" src="assets/img/logo-mark.png" alt="PrimeSpace logo mark"><span class="brand-text">Prime<span>Space</span></span></a>
+          <p style="margin-top:16px; max-width:320px;">Your trusted platform for booking premium corporate event venues.</p>
+          <div class="contact-list">
+            <div class="contact-item">✉️ <span>info@primespace.com</span></div>
+            <div class="contact-item">📞 <span>+1 (800) 123-4567</span></div>
+            <div class="contact-item">📍 <span>New York, NY 10001</span></div>
+          </div>
+        </div>
+        <div><h4>Quick Links</h4><div class="footer-list"><a href="index.html">Home</a><a href="venues.html">Search Venues</a><a href="login.html">Customer Login</a><a href="provider-login.html">Provider Login</a></div></div>
+        <div><h4>Resources</h4><div class="footer-list"><a href="#">How It Works</a><a href="#">Pricing</a><a href="#">FAQs</a><a href="#">Support</a></div></div>
+        <div><h4>Legal</h4><div class="footer-list"><a href="#">Terms of Service</a><a href="#">Privacy Policy</a><a href="#">Cookie Policy</a><a href="#">Contact Us</a></div></div>
+      </div>
+      <div class="footer-bottom">© 2026 PrimeSpace. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <a class="helper-bubble" href="#" aria-label="Help">?</a>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    const API_BASE = 'http://127.0.0.1:8000';
+
+    function initProfile() {
+      const token = localStorage.getItem('PRIMESPACE_TOKEN');
+      const userRaw = localStorage.getItem('PRIMESPACE_USER');
+
+      if (!token || !userRaw) {
+        document.getElementById('not-logged-in').style.display = 'block';
+        return;
+      }
+
+      const user = JSON.parse(userRaw);
+      document.getElementById('profile-content').style.display = 'block';
+      document.getElementById('profile-name').textContent = user.name;
+      document.getElementById('profile-email').textContent = user.email;
+      document.getElementById('profile-role').textContent = user.role.charAt(0).toUpperCase() + user.role.slice(1);
+      document.getElementById('profile-joined').textContent = new Date(user.created_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+      document.getElementById('new-name').value = user.name;
+
+      // Show provider section if provider
+      if (user.role === 'provider') {
+        document.getElementById('provider-section').style.display = 'block';
+        fetch(`${API_BASE}/bookings/all`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        }).then(r => r.json()).then(bookings => {
+          const total = bookings.reduce((s, b) => s + b.total, 0);
+          document.getElementById('prov-bookings').textContent = bookings.length;
+          document.getElementById('prov-revenue').textContent = `£${total.toLocaleString()}`;
+        }).catch(() => {
+          document.getElementById('prov-bookings').textContent = '0';
+          document.getElementById('prov-revenue').textContent = '£0';
+        });
+      }
+
+      // Show booking count for customers
+      if (user.role === 'customer') {
+        document.getElementById('booking-count-row').style.display = '';
+        fetch(`${API_BASE}/bookings/me`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        }).then(r => r.json()).then(bookings => {
+          document.getElementById('profile-booking-count').textContent = bookings.length;
+        }).catch(() => {
+          document.getElementById('profile-booking-count').textContent = '0';
+        });
+      }
+
+      // Disable Save Changes if name hasn't changed
+      const nameInput = document.getElementById('new-name');
+      const saveBtn = document.getElementById('save-name-btn');
+      saveBtn.disabled = true;
+      nameInput.addEventListener('input', () => {
+        saveBtn.disabled = nameInput.value.trim() === user.name;
+      });
+
+      document.getElementById('save-name-btn').addEventListener('click', async () => {
+        const newName = nameInput.value.trim();
+        const successEl = document.getElementById('edit-success');
+        const errorEl = document.getElementById('edit-error');
+        successEl.style.display = 'none';
+        errorEl.style.display = 'none';
+
+        if (!newName) {
+          errorEl.textContent = 'Name cannot be empty.';
+          errorEl.style.display = 'block';
+          return;
+        }
+
+        const btn = document.getElementById('save-name-btn');
+        btn.disabled = true;
+        btn.textContent = 'Saving...';
+
+        try {
+          const res = await fetch(`${API_BASE}/auth/me`, {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ name: newName })
+          });
+
+          if (!res.ok) {
+            const data = await res.json();
+            throw new Error(data.detail || 'Failed to update name.');
+          }
+
+          const updated = await res.json();
+          const updatedUser = { ...user, name: updated.name };
+          localStorage.setItem('PRIMESPACE_USER', JSON.stringify(updatedUser));
+          document.getElementById('profile-name').textContent = updated.name;
+          successEl.style.display = 'block';
+        } catch (err) {
+          errorEl.textContent = err.message || 'Something went wrong.';
+          errorEl.style.display = 'block';
+        } finally {
+          btn.disabled = false;
+          btn.textContent = 'Save Changes';
+        }
+      });
+    }
+
+    initProfile();
+  </script>
+</body>
+</html>

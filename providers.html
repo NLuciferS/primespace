@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Providers | PrimeSpace</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    .dashboard-card { background: #0d1b2e !important; color: #e2e8f0 !important; border: 1px solid rgba(125,211,252,.10) !important; }
+    .dashboard-card h2 { color: #f1f5f9 !important; }
+    .dashboard-card .muted { color: #7eb3e8 !important; }
+    .dashboard-card .stat-number { color: #2563eb !important; }
+    .table th { color: #93c5fd !important; border-bottom-color: rgba(125,211,252,.1) !important; }
+    .table td { color: #e2e8f0 !important; border-bottom-color: rgba(125,211,252,.08) !important; }
+    .dashboard-card ul li { color: #e2e8f0 !important; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container navbar">
+      <a class="brand" href="index.html"><img class="brand-logo" src="assets/img/logo-mark.png" alt="PrimeSpace logo"><span>PrimeSpace</span></a>
+      <nav class="nav-links">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="venues.html">Venues</a>
+        <a class="nav-link active" href="providers.html">Providers</a>
+      </nav>
+      <div class="nav-actions">
+        <svg class="user-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg>
+        <a href="provider-login.html"><strong>Provider Login</strong></a>
+        <a class="btn btn-primary btn-sm" href="provider-register.html">Register</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container section">
+    <section class="dashboard-hero">
+      <h1 style="margin:0; font-size:3rem; letter-spacing:-.04em;">Provider Dashboard</h1>
+      <p style="max-width:760px; color:rgba(255,255,255,.85); font-size:1.1rem;">Manage listings, review bookings, and keep availability up to date from one central portal.</p>
+      <div class="cta-actions" style="justify-content:flex-start;">
+        <a class="btn btn-secondary" href="provider-login.html">Sign In</a>
+        <a class="btn btn-primary" href="provider-register.html">List Your Venue</a>
+      </div>
+    </section>
+
+    <section class="section" style="padding-bottom:36px;">
+      <div class="stats-grid">
+        <article class="dashboard-card"><div class="muted">Active Listings</div><div class="stat-number">12</div></article>
+        <article class="dashboard-card"><div class="muted">Pending Requests</div><div class="stat-number">08</div></article>
+        <article class="dashboard-card"><div class="muted">Confirmed Bookings</div><div class="stat-number">24</div></article>
+        <article class="dashboard-card"><div class="muted">Monthly Revenue</div><div class="stat-number">$18.4k</div></article>
+      </div>
+    </section>
+
+    <section class="provider-grid">
+      <article class="dashboard-card">
+        <h2 style="margin-top:0;">Recent Booking Requests</h2>
+        <table class="table">
+          <thead><tr><th>Venue</th><th>Date</th><th>Client</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Executive Conference Center</td><td>18 Mar 2026</td><td>Global Systems</td><td><span class="pill pending">Pending</span></td></tr>
+            <tr><td>Skyline Meeting Hall</td><td>24 Mar 2026</td><td>Northlane</td><td><span class="pill confirmed">Confirmed</span></td></tr>
+            <tr><td>Innovation Hub</td><td>01 Apr 2026</td><td>BrightLabs</td><td><span class="pill review">Needs Review</span></td></tr>
+          </tbody>
+        </table>
+      </article>
+      <article class="dashboard-card">
+        <h2 style="margin-top:0;">Provider Benefits</h2>
+        <ul style="line-height:2; color:#334155; padding-left:18px;">
+          <li>Centralised calendar and availability management</li>
+          <li>Faster response time for corporate booking requests</li>
+          <li>Booking summaries and revenue tracking</li>
+          <li>Cleaner communication with business clients</li>
+        </ul>
+        <a class="btn btn-primary" href="provider-login.html" style="width:100%; margin-top:10px;">Open Provider Portal</a>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a class="brand footer-brand" href="index.html"><img class="brand-logo footer-logo" src="assets/img/logo-mark.png" alt="PrimeSpace logo mark"><span class="brand-text">Prime<span>Space</span></span></a><p style="margin-top:16px; max-width:320px;">Your trusted platform for booking premium corporate event venues.</p><div class="contact-list"><div class="contact-item">✉️ <span>info@primespace.com</span></div><div class="contact-item">📞 <span>+1 (800) 123-4567</span></div><div class="contact-item">📍 <span>New York, NY 10001</span></div></div></div>
+        <div><h4>Quick Links</h4><div class="footer-list"><a href="index.html">Home</a><a href="venues.html">Search Venues</a><a href="login.html">Customer Login</a><a href="provider-login.html">Provider Login</a></div></div>
+        <div><h4>Resources</h4><div class="footer-list"><a href="#">How It Works</a><a href="#">Pricing</a><a href="#">FAQs</a><a href="#">Support</a></div></div>
+        <div><h4>Legal</h4><div class="footer-list"><a href="#">Terms of Service</a><a href="#">Privacy Policy</a><a href="#">Cookie Policy</a><a href="#">Contact Us</a></div></div>
+      </div>
+      <div class="footer-bottom">© 2026 PrimeSpace. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <a class="helper-bubble" href="#" aria-label="Help">?</a>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

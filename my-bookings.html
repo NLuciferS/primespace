@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Bookings | PrimeSpace</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    .details-card { background: #0d1b2e !important; color: #e2e8f0 !important; border: 1px solid rgba(125,211,252,.10) !important; }
+    .details-card h3 { color: #f1f5f9 !important; }
+    .details-card .muted { color: #7eb3e8 !important; }
+    .details-card strong { color: #f1f5f9 !important; }
+    .details-card span { color: #c8d8f0 !important; }
+    .status-ok { color: #22c55e !important; }
+    .info-card { background: #0d1b2e !important; color: #e2e8f0 !important; border: 1px solid rgba(125,211,252,.10) !important; }
+    .info-card h3 { color: #f1f5f9 !important; }
+    .info-card .muted { color: #7eb3e8 !important; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container navbar">
+      <a class="brand" href="index.html"><img class="brand-logo" src="assets/img/logo-mark.png" alt="PrimeSpace logo"><span class="brand-text">Prime<span>Space</span></span></a>
+      <nav class="nav-links">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="venues.html">Venues</a>
+        <a class="nav-link active" href="my-bookings.html">My Bookings</a>
+      </nav>
+      <div class="nav-actions">
+        <svg class="user-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg>
+        <a href="login.html"><strong>Login</strong></a>
+        <a class="btn btn-primary btn-sm" href="customer-register.html">Register</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container section" data-my-bookings-page>
+    <div style="margin-bottom:32px;">
+      <h1 style="font-size:3rem; margin:0 0 8px; letter-spacing:-.03em;">My Bookings</h1>
+      <p class="muted">All your confirmed venue bookings in one place.</p>
+    </div>
+    <div data-bookings-list>
+      <p class="muted">Loading...</p>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand footer-brand" href="index.html"><img class="brand-logo footer-logo" src="assets/img/logo-mark.png" alt="PrimeSpace logo mark"><span class="brand-text">Prime<span>Space</span></span></a>
+          <p style="margin-top:16px; max-width:320px;">Your trusted platform for booking premium corporate event venues.</p>
+          <div class="contact-list">
+            <div class="contact-item">✉️ <span>info@primespace.com</span></div>
+            <div class="contact-item">📞 <span>+1 (800) 123-4567</span></div>
+            <div class="contact-item">📍 <span>New York, NY 10001</span></div>
+          </div>
+        </div>
+        <div><h4>Quick Links</h4><div class="footer-list"><a href="index.html">Home</a><a href="venues.html">Search Venues</a><a href="login.html">Customer Login</a><a href="provider-login.html">Provider Login</a></div></div>
+        <div><h4>Resources</h4><div class="footer-list"><a href="#">How It Works</a><a href="#">Pricing</a><a href="#">FAQs</a><a href="#">Support</a></div></div>
+        <div><h4>Legal</h4><div class="footer-list"><a href="#">Terms of Service</a><a href="#">Privacy Policy</a><a href="#">Cookie Policy</a><a href="#">Contact Us</a></div></div>
+      </div>
+      <div class="footer-bottom">© 2026 PrimeSpace. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <a class="helper-bubble" href="#" aria-label="Help">?</a>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Provider Dashboard | PrimeSpace</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    .dashboard-card { background: #0d1b2e !important; color: #e2e8f0 !important; border: 1px solid rgba(125,211,252,.10) !important; }
+    .dashboard-card h2 { color: #f1f5f9 !important; }
+    .dashboard-card .muted { color: #7eb3e8 !important; }
+    #venue-listings > div { border-bottom-color: rgba(125,211,252,.1) !important; }
+    #recent-bookings > div { border-bottom-color: rgba(125,211,252,.1) !important; }
+    #dashboard-content h1, #dashboard-content h2, #dashboard-content p, #dashboard-content strong { color: inherit; }
+    .muted { color: #7eb3e8 !important; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container navbar">
+      <a class="brand" href="index.html"><img class="brand-logo" src="assets/img/logo-mark.png" alt="PrimeSpace logo"><span class="brand-text">Prime<span>Space</span></span></a>
+      <nav class="nav-links">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="venues.html">Venues</a>
+        <a class="nav-link active" href="provider-dashboard.html">Dashboard</a>
+      </nav>
+      <div class="nav-actions">
+        <svg class="user-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg>
+        <span id="provider-name" style="font-weight:600; color:var(--text);">Provider</span>
+        <button class="btn btn-sm btn-secondary" onclick="logout()">Sign Out</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container section" data-provider-dashboard>
+
+    <!-- Access guard message (shown if not logged in as provider) -->
+    <div id="access-denied" style="display:none; text-align:center; padding:80px 0;">
+      <div style="font-size:3rem; margin-bottom:16px;">🔒</div>
+      <h2>Provider Access Only</h2>
+      <p class="muted">You need to be signed in as a provider to view this page.</p>
+      <a class="btn btn-primary" href="provider-login.html" style="margin-top:16px;">Sign in to Provider Portal</a>
+    </div>
+
+    <!-- Dashboard content (shown when logged in as provider) -->
+    <div id="dashboard-content" style="display:none;">
+
+      <div style="margin-bottom:32px;">
+        <h1 style="font-size:3rem; margin:0 0 8px; letter-spacing:-.03em;">Provider Dashboard</h1>
+        <p class="muted">Welcome back, <strong id="dashboard-greeting">Provider</strong>. Here's an overview of your listings.</p>
+      </div>
+
+      <!-- Stats row -->
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:18px; margin-bottom:32px;">
+        <div class="dashboard-card" style="padding:24px; text-align:center;">
+          <div style="font-size:2.4rem; font-weight:700; color:#2563eb;" id="stat-venues">6</div>
+          <div class="muted" style="margin-top:4px;">Active Venues</div>
+        </div>
+        <div class="dashboard-card" style="padding:24px; text-align:center;">
+          <div style="font-size:2.4rem; font-weight:700; color:#16a34a;" id="stat-bookings">—</div>
+          <div class="muted" style="margin-top:4px;">Total Bookings</div>
+        </div>
+        <div class="dashboard-card" style="padding:24px; text-align:center;">
+          <div style="font-size:2.4rem; font-weight:700; color:#d97706;" id="stat-revenue">—</div>
+          <div class="muted" style="margin-top:4px;">Total Revenue</div>
+        </div>
+        <div class="dashboard-card" style="padding:24px; text-align:center;">
+          <div style="font-size:2.4rem; font-weight:700; color:#7c3aed;" id="stat-avg">—</div>
+          <div class="muted" style="margin-top:4px;">Avg. Booking Value</div>
+        </div>
+      </div>
+
+      <!-- Venue listings -->
+      <div class="dashboard-card" style="padding:30px; margin-bottom:24px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+          <h2 style="margin:0;">Your Venue Listings</h2>
+          <span class="muted" style="font-size:0.95rem;">Demo mode — listings are read-only</span>
+        </div>
+        <div id="venue-listings"></div>
+      </div>
+
+      <!-- Recent bookings -->
+      <div class="dashboard-card" style="padding:30px;">
+        <h2 style="margin-top:0;">Recent Bookings</h2>
+        <div id="top-venue-label" class="muted" style="font-size:0.9rem; margin-bottom:12px;"></div>
+        <div id="recent-bookings">
+          <p class="muted">No bookings to display yet. Bookings made by customers will appear here.</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand footer-brand" href="index.html"><img class="brand-logo footer-logo" src="assets/img/logo-mark.png" alt="PrimeSpace logo mark"><span class="brand-text">Prime<span>Space</span></span></a>
+          <p style="margin-top:16px; max-width:320px;">Your trusted platform for booking premium corporate event venues.</p>
+        </div>
+        <div><h4>Quick Links</h4><div class="footer-list"><a href="index.html">Home</a><a href="venues.html">Search Venues</a><a href="provider-login.html">Provider Login</a></div></div>
+      </div>
+      <div class="footer-bottom">© 2026 PrimeSpace. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script src="assets/js/data.js"></script>
+  <script>
+    function logout() {
+      localStorage.removeItem('PRIMESPACE_TOKEN');
+      localStorage.removeItem('PRIMESPACE_USER');
+      localStorage.removeItem('PRIMESPACE_TOKEN_TYPE');
+      window.location.href = 'provider-login.html';
+    }
+
+    async function init() {
+      const userRaw = localStorage.getItem('PRIMESPACE_USER');
+      const token = localStorage.getItem('PRIMESPACE_TOKEN');
+
+      if (!token || !userRaw) {
+        document.getElementById('access-denied').style.display = 'block';
+        return;
+      }
+
+      const user = JSON.parse(userRaw);
+
+      if (user.role !== 'provider') {
+        document.getElementById('access-denied').style.display = 'block';
+        return;
+      }
+
+      // Show dashboard
+      document.getElementById('dashboard-content').style.display = 'block';
+      document.getElementById('provider-name').textContent = user.name;
+      document.getElementById('dashboard-greeting').textContent = user.name;
+
+      // Render venue listings from data.js
+      const listings = document.getElementById('venue-listings');
+      const venues = window.primeSpaceVenues || [];
+      document.getElementById('stat-venues').textContent = venues.length;
+      // Calculate real avg rating from data.js
+      const avgRating = venues.length ? (venues.reduce((s,v) => s + v.rating, 0) / venues.length).toFixed(1) : '—';
+      const avgRatingEl = document.querySelector('[id="stat-avg"]') || document.querySelector('.stat-avg');
+      // Find the 4th stat card (avg rating)
+      const statCards = document.querySelectorAll('[style*="font-size:2.4rem"]');
+      if (statCards[3]) statCards[3].textContent = avgRating;
+
+      listings.innerHTML = venues.map(v => `
+        <div style="display:flex; justify-content:space-between; align-items:center; padding:16px 0; border-bottom:1px solid #e7edf7;">
+          <div>
+            <strong style="font-size:1.1rem;">${v.name}</strong>
+            <div class="muted" style="font-size:0.9rem; margin-top:2px;">📍 ${v.location} &nbsp;|&nbsp; 👥 Capacity: ${v.capacity} &nbsp;|&nbsp; ${v.type}</div>
+          </div>
+          <div style="display:flex; align-items:center; gap:16px;">
+            <span style="font-weight:700; color:#2563eb;">$${v.price}/day</span>
+            <span style="color:#16a34a; font-weight:600;">⭐ ${v.rating}</span>
+            <a class="btn btn-sm btn-secondary" href="venue.html?id=${v.id}">View</a>
+          </div>
+        </div>
+      `).join('');
+
+      // Fetch real booking stats from API
+      try {
+        const API_BASE = 'http://127.0.0.1:8000';
+        const res = await fetch(`${API_BASE}/bookings/all`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (res.ok) {
+          const bookings = await res.json();
+          const totalRevenue = bookings.reduce((sum, b) => sum + b.total, 0);
+          const avgValue = bookings.length ? Math.round(totalRevenue / bookings.length) : 0;
+          document.getElementById('stat-bookings').textContent = bookings.length;
+          document.getElementById('stat-revenue').textContent = `£${totalRevenue.toLocaleString()}`;
+          document.getElementById('stat-avg').textContent = bookings.length ? `£${avgValue}` : '—';
+
+          // Sort bookings by date desc
+          const sorted = [...bookings].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+
+          // Top venue by booking count
+          const venueCounts = {};
+          bookings.forEach(b => { venueCounts[b.venue_id] = (venueCounts[b.venue_id] || 0) + 1; });
+          const topVenueId = Object.entries(venueCounts).sort((a,b) => b[1]-a[1])[0]?.[0];
+          const topVenue = venues.find(v => v.id === topVenueId);
+          if (topVenue) {
+            const topEl = document.getElementById('top-venue-label');
+            if (topEl) topEl.textContent = `🏆 Top venue: ${topVenue.name} (${venueCounts[topVenueId]} bookings)`;
+          }
+
+          // Show recent bookings sorted by date
+          const recentEl = document.getElementById('recent-bookings');
+          if (sorted.length > 0) {
+            recentEl.innerHTML = sorted.slice(0, 5).map(b => {
+              const venue = venues.find(v => v.id === b.venue_id);
+              const venueName = venue ? venue.name : b.venue_id;
+              const created = new Date(b.created_at).toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' });
+              return `
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:14px 0; border-bottom:1px solid rgba(125,211,252,.1); flex-wrap:wrap; gap:10px;">
+                  <div>
+                    <strong>${venueName}</strong>
+                    <div class="muted" style="font-size:0.9rem; margin-top:2px;">📅 ${b.date || 'No date'} &nbsp;|&nbsp; 👥 ${b.guests} guests</div>
+                  </div>
+                  <div style="text-align:right;">
+                    <strong style="color:#16a34a;">£${b.total}</strong>
+                    <div class="muted" style="font-size:0.85rem;">${created}</div>
+                  </div>
+                </div>`;
+            }).join('');
+          } else {
+            recentEl.innerHTML = '<p class="muted" style="text-align:center; padding:24px 0;">No bookings yet. Share your venue links with customers to get started.</p>';
+          }
+        }
+      } catch(e) {
+        document.getElementById('stat-bookings').textContent = '0';
+        document.getElementById('stat-revenue').textContent = '$0';
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>

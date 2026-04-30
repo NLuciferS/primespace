@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Login | PrimeSpace</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    body, .auth-page { background: #060f1e !important; }
+    .login-shell { color: #e2e8f0; }
+    .login-heading h1 { color: #f1f5f9; }
+    .login-heading p { color: #7eb3e8; }
+    .login-card { background: #0d1b2e !important; border: 1px solid rgba(125,211,252,.10) !important; border-radius: 16px; }
+    .form-group label { color: #93c5fd !important; font-weight: 600; }
+    .input-wrap { background: #0f1f38 !important; border: 1px solid rgba(125,211,252,.15) !important; border-radius: 8px; }
+    .input-wrap input { color: #e2e8f0 !important; background: transparent !important; }
+    .input-wrap input::placeholder { color: #4a6080 !important; }
+    .input-wrap span { color: #7eb3e8 !important; }
+    .form-helper { color: #7eb3e8 !important; }
+    .form-helper a { color: #93c5fd !important; }
+    .divider { border-color: rgba(125,211,252,.1) !important; }
+    .back-home a { color: #7eb3e8 !important; }
+    .soft-panel { background: #0f1f38 !important; border: 1px solid rgba(125,211,252,.1) !important; color: #e2e8f0 !important; }
+    .soft-panel strong { color: #f1f5f9 !important; }
+    .soft-panel ul li { color: #c8d8f0 !important; }
+    p { color: #7eb3e8 !important; }
+    p a { color: #93c5fd !important; }
+  </style>
+</head>
+<body>
+  <main class="auth-page">
+    <div class="login-shell">
+      <div class="login-heading">
+        <a class="brand auth-brand" href="index.html"><img class="brand-logo auth-logo" src="assets/img/logo-mark.png" alt="PrimeSpace logo mark"><span class="brand-text">Prime<span>Space</span></span></a>
+        <h1>Customer Login</h1>
+        <p>Sign in to manage your bookings.</p>
+      </div>
+      <section class="login-card">
+        <form class="form-grid" data-auth-form>
+          <div class="form-group">
+            <label for="customer-email">Email Address</label>
+            <div class="input-wrap"><span class="input-icon">✉️</span><input id="customer-email" type="email" placeholder="your@email.com"></div>
+          </div>
+          <div class="form-group">
+            <label for="customer-password">Password</label>
+            <div class="input-wrap"><span class="input-icon">🔒</span><input id="customer-password" type="password" placeholder="Enter your password"></div>
+          </div>
+          <div class="form-helper">
+            <label><input type="checkbox"> Remember me</label>
+            <a href="#" style="color:#2563eb;">Forgot password?</a>
+          </div>
+          <button class="btn btn-primary" type="submit">Sign In</button>
+          <p style="text-align:center; margin:0; color:#475569;">Don't have an account? <a href="customer-register.html" style="color:#2563eb; font-weight:700;">Create customer account</a></p>
+        </form>
+        <div class="divider"></div>
+        <p style="text-align:center; color:#475569;">Are you a venue provider?</p>
+        <a class="btn btn-secondary" href="provider-login.html" style="width:100%;">Provider Login</a>
+      </section>
+      <div class="back-home"><a href="index.html">← Back to Home</a></div>
+    </div>
+  </main>
+  <a class="helper-bubble" href="#" aria-label="Help">?</a>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

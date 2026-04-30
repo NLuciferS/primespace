@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Venues | PrimeSpace</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <style>
+    .filter-card, .portal-grid .filter-card { background: #0a1628 !important; color: #e2e8f0 !important; border: 1px solid rgba(125,211,252,.10) !important; }
+    .filter-card h2 { color: #f1f5f9 !important; }
+    .filter-card label { color: #93c5fd !important; font-weight: 600 !important; }
+    .filter-card .input-wrap { background: #0f1f38 !important; border-color: rgba(125,211,252,.15) !important; }
+    .filter-card input, .filter-card select { color: #e2e8f0 !important; background: transparent !important; }
+    .filter-card input::placeholder { color: #4a6080 !important; }
+    .filter-card .range-row { color: #7eb3e8 !important; }
+    .filter-card .btn-secondary { background: #0f1f38 !important; color: #93c5fd !important; }
+    .filter-card .btn-primary { background: linear-gradient(180deg,#2d6ff2,#2459cf) !important; color: white !important; }
+    .results-toolbar { background: #0a1628 !important; border: 1px solid rgba(125,211,252,.10) !important; color: #e2e8f0 !important; }
+    .results-toolbar select, .results-toolbar .input-wrap { background: #0f1f38 !important; color: #e2e8f0 !important; border-color: rgba(125,211,252,.15) !important; }
+    .results-toolbar span { color: #93c5fd !important; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container navbar">
+      <a class="brand" href="index.html"><img class="brand-logo" src="assets/img/logo-mark.png" alt="PrimeSpace logo"><span>PrimeSpace</span></a>
+      <nav class="nav-links">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link active" href="venues.html">Venues</a>
+        <a class="nav-link" href="providers.html">Providers</a>
+      </nav>
+      <div class="nav-actions">
+        <svg class="user-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg>
+        <a href="login.html"><strong>Login</strong></a>
+        <a class="btn btn-primary btn-sm" href="customer-register.html">Register</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" data-venues-page>
+    <div class="results-head">
+      <h1 style="font-size:3.2rem; margin:0 0 8px; letter-spacing:-.03em;">Search Results</h1>
+      <p class="muted" data-results-count>6 venues found</p>
+    </div>
+
+    <div class="results-toolbar">
+      <div class="input-wrap" style="max-width:260px;">
+        <span>Sort by:</span>
+        <select id="sort-select">
+          <option value="recommended">Recommended</option>
+          <option value="rating">Highest Rated</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+        </select>
+      </div>
+      <div class="toggle-group">
+        <button class="btn btn-sm active" type="button" data-view-toggle="grid">Grid</button>
+        <button class="btn btn-sm btn-ghost" type="button" data-view-toggle="list">List</button>
+        <button class="btn btn-sm btn-ghost" type="button" data-view-toggle="map">Map</button>
+      </div>
+    </div>
+
+    <section class="section" style="padding-top:28px;">
+      <div class="portal-grid">
+        <aside class="filter-card">
+          <h2 style="margin-top:0; font-size:2rem;">Filters</h2>
+          <div class="filter-section">
+            <label for="filter-location">Location</label>
+            <div class="input-wrap"><input id="filter-location" type="text" placeholder="Enter city or address"></div>
+          </div>
+          <div class="filter-section">
+            <label for="filter-type">Venue Type</label>
+            <div class="input-wrap">
+              <select id="filter-type">
+                <option value="">Select type</option>
+                <option>Conference</option>
+                <option>Meeting</option>
+                <option>Workshop</option>
+                <option>Ballroom</option>
+                <option>Boardroom</option>
+              </select>
+            </div>
+          </div>
+          <div class="filter-section">
+            <label for="filter-capacity">Minimum Capacity</label>
+            <div class="input-wrap"><input id="filter-capacity" type="number" min="0" placeholder="e.g. 50"></div>
+          </div>
+          <div class="filter-section">
+            <label for="filter-price">Price Range (per day)</label>
+            <input id="filter-price" type="range" min="500" max="10000" value="10000" style="width:100%; accent-color:#2563eb;">
+            <div class="range-row"><span>£0</span><span data-price-output>£10,000</span></div>
+          </div>
+          <div class="filter-section">
+            <label for="filter-date">Availability Date</label>
+            <div class="input-wrap"><input id="filter-date" type="date"></div>
+          </div>
+          <div class="filter-section">
+            <label for="filter-rating">Minimum Rating</label>
+            <div class="input-wrap">
+              <select id="filter-rating">
+                <option value="0">Any rating</option>
+                <option value="4">4+ stars</option>
+                <option value="4.5">4.5+ stars</option>
+                <option value="4.8">4.8+ stars</option>
+              </select>
+            </div>
+          </div>
+          <div style="display:flex; gap:12px; margin-top:26px;">
+            <button class="btn btn-secondary" type="button" data-reset-filters style="flex:1;">Reset</button>
+            <button class="btn btn-primary" type="button" data-apply-filters style="flex:1;">Apply</button>
+          </div>
+        </aside>
+        <div>
+          <div class="cards-grid" data-venues-list></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand footer-brand" href="index.html"><img class="brand-logo footer-logo" src="assets/img/logo-mark.png" alt="PrimeSpace logo mark"><span class="brand-text">Prime<span>Space</span></span></a>
+          <p style="margin-top:16px; max-width:320px;">Your trusted platform for booking premium corporate event venues.</p>
+          <div class="contact-list"><div class="contact-item">✉️ <span>info@primespace.com</span></div><div class="contact-item">📞 <span>+1 (800) 123-4567</span></div><div class="contact-item">📍 <span>New York, NY 10001</span></div></div>
+        </div>
+        <div><h4>Quick Links</h4><div class="footer-list"><a href="index.html">Home</a><a href="venues.html">Search Venues</a><a href="login.html">Customer Login</a><a href="provider-login.html">Provider Login</a></div></div>
+        <div><h4>Resources</h4><div class="footer-list"><a href="#">How It Works</a><a href="#">Pricing</a><a href="#">FAQs</a><a href="#">Support</a></div></div>
+        <div><h4>Legal</h4><div class="footer-list"><a href="#">Terms of Service</a><a href="#">Privacy Policy</a><a href="#">Cookie Policy</a><a href="#">Contact Us</a></div></div>
+      </div>
+      <div class="footer-bottom">© 2026 PrimeSpace. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <a class="helper-bubble" href="#" aria-label="Help">?</a>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
