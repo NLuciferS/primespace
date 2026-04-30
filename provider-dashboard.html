@@ -161,7 +161,7 @@
 
       // Fetch real booking stats from API
       try {
-        const API_BASE = 'http://127.0.0.1:8000';
+        const API_BASE = 'https://primespace-backend.onrender.com';
         const res = await fetch(`${API_BASE}/bookings/all`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
