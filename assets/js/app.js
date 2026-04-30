@@ -4,7 +4,7 @@
   const venues = window.primeSpaceVenues || [];
   const __apiBaseFromWindow = window.PRIMESPACE_API_BASE;
   const __apiBaseFromStorage = localStorage.getItem('PRIMESPACE_API_BASE');
-  const API_BASE = (__apiBaseFromWindow || __apiBaseFromStorage || 'http://127.0.0.1:8000').replace(/\/+$/, '');
+  const API_BASE = (__apiBaseFromWindow || __apiBaseFromStorage || 'https://primespace-backend.onrender.com').replace(/\/+$/, '');
 
   // ─── Toast notifications ─────────────────────────────────────────────────────
   function toast(message, type = 'info', duration = 4000) {
